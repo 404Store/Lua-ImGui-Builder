@@ -160,3 +160,4 @@ function Gui:InputText(label, hint, value)
     end
     return value
 end
+return Gui
