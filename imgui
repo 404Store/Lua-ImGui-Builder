@@ -3,13 +3,13 @@ Gui.__index = Gui
 
 function Gui.New(config)
     local self = setmetatable({}, Gui)
-    self.title      = config.title or "Untitled"
-    self.size       = config.size or {300, 400}
-    self.flags      = config.flags or ImGui.WindowFlags.None
-    self.visible    = (config.visible ~= false)
-    self.OnRender   = config.OnRender or function() end
-    self.themeName  = config.theme or config.Theme
-
+    self.title = config.title or "Untitled"
+    self.size = config.size or {300, 400}
+    self.flags = config.flags or ImGui.WindowFlags.None
+    self.visible = (config.visible ~= false)
+    self.OnRender = config.OnRender or function() end
+    self.themeName = config.theme or config.Theme
+    self._tabBarStack = {}
     self.themes = {
         brown = { 
             {ImGui.Col.WindowBg,0xDD101010},{ImGui.Col.ChildBg,0xDD181818},{ImGui.Col.PopupBg,0xFF1E1E2E},{ImGui.Col.TitleBg,0xFF292940},{ImGui.Col.TitleBgActive,0xFF3D3D60},{ImGui.Col.TitleBgCollapsed,0xFF202030},{ImGui.Col.Border,0xFF505070},{ImGui.Col.Tab,0xFF303050},{ImGui.Col.TabHovered,0xFF5060F0},{ImGui.Col.TabActive,0xFF7080FF},{ImGui.Col.Button,0xFF303050},{ImGui.Col.ButtonHovered,0xFF5060F0},{ImGui.Col.ButtonActive,0xFF7080FF},{ImGui.Col.CheckMark,0xFF7080FF},{ImGui.Col.FrameBg,0x99303050},{ImGui.Col.FrameBgHovered,0xFF5060F0},{ImGui.Col.FrameBgActive,0xFF7080FF},{ImGui.Col.SliderGrab,0xFFFF66CC},{ImGui.Col.SliderGrabActive,0xFFDD44CC},{ImGui.Col.ScrollbarBg,0xDD101010},{ImGui.Col.ScrollbarGrab,0x99303050},{ImGui.Col.ScrollbarGrabHovered,0xFF5060F0},{ImGui.Col.ScrollbarGrabActive,0xFF7080FF},{ImGui.Col.Separator,0xFF303050},{ImGui.Col.SeparatorHovered,0xFF5060F0},{ImGui.Col.SeparatorActive,0xFF7080FF},{ImGui.Col.Header,0xFF303050},{ImGui.Col.HeaderHovered,0xFF5060F0},{ImGui.Col.HeaderActive,0xFF7080FF},{ImGui.Col.ResizeGrip,0xFF3D3D60},{ImGui.Col.ResizeGripHovered,0xFF505080},{ImGui.Col.ResizeGripActive,0xFF7070A0},{ImGui.Col.Text,0xFFFFEEDD} 
@@ -18,7 +18,6 @@ function Gui.New(config)
             {ImGui.Col.WindowBg,0xD92E1E1E},{ImGui.Col.ChildBg,0xFF2E1E1E},{ImGui.Col.PopupBg,0xD92E1E1E},{ImGui.Col.TitleBg,0xD92E1E1E},{ImGui.Col.TitleBgActive,0xFF2E1E1E},{ImGui.Col.TitleBgCollapsed,0xD92E1E1E},{ImGui.Col.Border,0xFF86706C},{ImGui.Col.Tab,0xFF2E1E1E},{ImGui.Col.TabHovered,0xFF704B3A},{ImGui.Col.TabActive,0xFF442C2C},{ImGui.Col.Button,0xFF442C2C},{ImGui.Col.ButtonHovered,0xFF704B3A},{ImGui.Col.ButtonActive,0xFFA06A50},{ImGui.Col.CheckMark,0xFF40C040},{ImGui.Col.FrameBg,0xFF442C2C},{ImGui.Col.FrameBgHovered,0xFF704B3A},{ImGui.Col.FrameBgActive,0xFF442C2C},{ImGui.Col.SliderGrab,0xFF40C040},{ImGui.Col.SliderGrabActive,0xFFA06A50},{ImGui.Col.ScrollbarBg,0xD92E1E1E},{ImGui.Col.ScrollbarGrab,0xFF442C2C},{ImGui.Col.ScrollbarGrabHovered,0xFF704B3A},{ImGui.Col.ScrollbarGrabActive,0xFF442C2C},{ImGui.Col.Separator,0xFF86706C},{ImGui.Col.SeparatorHovered,0xFF704B3A},{ImGui.Col.SeparatorActive,0xFF442C2C},{ImGui.Col.Header,0xFF2E1E1E},{ImGui.Col.HeaderHovered,0xFF704B3A},{ImGui.Col.HeaderActive,0xFF442C2C},{ImGui.Col.ResizeGrip,0xFF86706C},{ImGui.Col.ResizeGripHovered,0xFF704B3A},{ImGui.Col.ResizeGripActive,0xFF442C2C},{ImGui.Col.Text,0xFFE6E6E6} 
         }
     }
-
     self._tabBarActive = false
     self.styleStack = 0
     return self
@@ -28,12 +27,10 @@ function Gui:ApplyTheme()
     if not self.themeName then return end
     local t = self.themes[self.themeName]
     if not t then return end
-
     if self.styleStack > 0 then
         ImGui.PopStyleColor(self.styleStack)
         self.styleStack = 0
     end
-
     for _, v in ipairs(t) do
         ImGui.PushStyleColor(v[1], v[2])
         self.styleStack = self.styleStack + 1
@@ -46,30 +43,17 @@ function Gui:Begin()
     return ImGui.Begin(self.title, nil, self.flags)
 end
 
-function Gui:End()
-    if self._tabBarActive then
+function Gui:Tabs(renderFunc)
+    local id = "TabBar_" .. tostring(self.title) .. "_" .. tostring(#self._tabBarStack + 1)
+    if ImGui.BeginTabBar(id) then
+        table.insert(self._tabBarStack, id)
+        if renderFunc then renderFunc() end
         ImGui.EndTabBar()
-        self._tabBarActive = false
+        table.remove(self._tabBarStack)
     end
-
-    if self.styleStack > 0 then
-        ImGui.PopStyleColor(self.styleStack)
-        self.styleStack = 0
-    end
-
-    ImGui.End()
 end
 
-
 function Gui:Tab(label, renderFunc)
-    if not self._tabBarActive then
-        if ImGui.BeginTabBar("TabBar_" .. tostring(self.title)) then
-            self._tabBarActive = true
-        else
-            return
-        end
-    end
-
     if ImGui.BeginTabItem(label) then
         if renderFunc then renderFunc() end
         ImGui.EndTabItem()
@@ -78,37 +62,33 @@ end
 
 function Gui:Child(name, x, y, flags, renderFunc)
     flags = flags or ImGui.WindowFlags.None
-
     if ImGui.BeginChild(name or "Child", ImVec2(x or 0, y or 0), true, flags) then
         if renderFunc then renderFunc() end
-
-        if self._tabBarActive then
-            ImGui.EndTabBar()
-            self._tabBarActive = false
-        end
     end
-
     ImGui.EndChild()
 end
+
+function Gui:End()
+    if self.styleStack > 0 then
+        ImGui.PopStyleColor(self.styleStack)
+        self.styleStack = 0
+    end
+    ImGui.End()
+end
+
 
 function Gui:Table(headers, renderFunc, flags, id)
     flags = flags or 3094
     id = id or ("Table_" .. tostring(self.title or "NoTitle"))
-
     local columnCount = #headers
-
     if ImGui.BeginTable(id, columnCount, flags) then
-
         for _, col in ipairs(headers) do
             ImGui.TableSetupColumn(col)
         end
-
         ImGui.TableHeadersRow()
-
         if renderFunc then
             renderFunc()
         end
-        
         ImGui.EndTable()
     end
 end
