@@ -27,17 +27,17 @@ local Gui = load(MakeRequest(
 
 ## 🧪 Basic Usage
 ```lua
-local win = Gui.New({
+local Win = Gui.New({
     title = "Demo Window",
     size = { 400, 300 },
     theme = "brown",
-    OnRender = function()
+    OnRender = function(win)
         ImGui.Text("Hello ImGui!")
     end
 })
 
 AddHook("OnDraw", "RenderUI", function()
-    win:Render()
+    Win:Render()
 end)
 ```
 
@@ -75,7 +75,7 @@ Gui.New({
     flags = ImGui.WindowFlags.None,
     visible = true,
     theme = "dark",
-    OnRender = function() end
+    OnRender = function(value) end
 })
 ```
 
@@ -112,11 +112,17 @@ end)
 
 Example:
 ```lua
-Gui:Button("CLICK ME", function()
+win:Button("CLICK ME", function()
     Gui.Text("Clicked!")
 end,-1, 0) -- sizeX, sizeY is optional default will be 0, 0
 
 enabled = win:Checkbox("Enable Feature", enabled)
+
+delay = win:SliderDelay("DELAY", delay, 100, 300) -- the delay minimal slide is 100 until 300
+
+id = win:InputInt("Item", id)
+
+name = win:InputText("Name", "Input Name Slowly", name) -- you also can make label not showed by adding ##. Ex: ##Name
 
 ```
 
