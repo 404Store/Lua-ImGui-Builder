@@ -161,4 +161,4 @@ win:Text("Hello world", 0xFF66CC66") -- text in color green. color is opsional
 ```
 [Click Me](https://github.com/404Store/Lua-ImGui-Builder/tree/main/Script%20Example)
 
----
+```
