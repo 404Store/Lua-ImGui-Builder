@@ -128,26 +128,6 @@ If a color is provided, it automatically handles style push/pop.
 ## 🧠 Usage Tips
 - Call `Gui:Render()` every frame inside a Draw hook
 - No need to manually call `Begin()` or `End()` — handled internally
-- Use `Gui:TableRow()` inside the table's rendering callback
 
 ---
 
-## 🌍 Suitable For
-✔ Game UI overlays  
-✔ Bot control interfaces  
-✔ Debug tools  
-✔ Internal utilities
-
----
-
-## 🧑‍💻 Contributing
-Pull requests are welcome!  
-Feel free to open an issue for bug reports or feature requests.
-
----
-
-## 📄 License
-Open for both personal and commercial use.  
-(Optionally MIT License — up to the repository owner)
-
----
