@@ -20,7 +20,6 @@ local Gui = load(MakeRequest(
     "GET"
 ).content)()
 ```
-[Sample Script](https://github.com/404Store/Lua-ImGui-Builder/tree/main/Script%20Example)
 
 ---
 
