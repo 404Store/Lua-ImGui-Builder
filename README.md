@@ -101,10 +101,10 @@ win:Child("label", -1, -1, true, function() -- sizeX, sizeY is optional. flags (
 end)
 
 local tableV = {"Banana", "Apple", "Watermelon"}
-crt:Table({"No", "Name"}, function() -- default flags 3094 (Showing Grid). id is optional
+win:Table({"No", "Name"}, function() -- default flags 3094 (Showing Grid). id is optional
     for i = 1, #tableV do
         local name = tableV[i]
-        crt:TableRow({i, name})
+        win:TableRow({i, name})
     end
 end)
 ```
