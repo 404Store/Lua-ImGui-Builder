@@ -86,7 +86,7 @@ Gui.New({
 |----------|-------------|
 | `Gui:Tabs(func)` | Create a TabBar container |
 | `Gui:Tab(label, func)` | Create a tab item |
-| `Gui:Child(name, w, h, flags, func)` | Scrollable child frame |
+| `Gui:Child(name, sizeX, sizeY, flags, func)` | Scrollable child frame |
 | `Gui:Table(headers, func, flags, id)` | Create a table |
 | `Gui:TableRow(values)` | Add a row to the table |
 
@@ -104,7 +104,7 @@ end)
 ### 🎛️ Input Widgets
 | Function | Return | Description |
 |----------|--------|-------------|
-| `Gui:Button(label, callback, w, h)` | boolean | Clickable button |
+| `Gui:Button(label, callback, sizeX, sizeY)` | boolean | Clickable button |
 | `Gui:Checkbox(label, value)` | value new | Boolean input |
 | `Gui:SliderDelay(label, value, min, max)` | value new | Delay slider (ms) |
 | `Gui:InputInt(label, value)` | value new | Integer input |
