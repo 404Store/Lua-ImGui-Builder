@@ -112,8 +112,12 @@ end)
 
 Example:
 ```lua
-### Checkbox
+Gui:Button("CLICK ME", function()
+    Gui.Text("Clicked!")
+end,-1, 0) -- sizeX, sizeY is optional default will be 0, 0
+
 enabled = win:Checkbox("Enable Feature", enabled)
+
 ```
 
 ---
