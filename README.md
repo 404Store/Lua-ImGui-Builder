@@ -1,6 +1,7 @@
 
 # 🧩 Lua ImGui Builder  
 A lightweight GUI framework built on **ImGui**, designed to simplify UI creation in Lua applications and game environments.
+
 [Sample Script](https://github.com/404Store/Lua-ImGui-Builder/tree/main/Script%20Example)
 
 ---
