@@ -32,7 +32,7 @@ local Win = Gui.New({
     size = { 400, 300 },
     theme = "brown",
     OnRender = function(win)
-        ImGui.Text("Hello ImGui!")
+        win:Text("Hello ImGui!")
     end
 })
 
