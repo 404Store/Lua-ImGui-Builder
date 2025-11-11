@@ -94,7 +94,7 @@ Example:
 ```lua
 win:Tabs(function()
     win:Tab("Settings", function()
-        ImGui.Text("Settings Tab Active")
+        win:Text("Settings Tab Active")
     end)
 end)
 
@@ -142,11 +142,16 @@ name = win:InputText("Name", "Input Name Slowly", name) -- you also can make lab
 
 ### 📝 Text Utility
 ```lua
-Gui:Text(text, color)
+win:Text(text, color)
 ```
 If a color is provided, it automatically handles style push/pop.
 
 ---
+
+Example:
+```lua
+win:Text("Hello world", 0xFF66CC66") -- text in color green. color is opsional
+```
 
 ## 🧠 Usage Tips
 - Call `Gui:Render()` every frame inside a Draw hook
