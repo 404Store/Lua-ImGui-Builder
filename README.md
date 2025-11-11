@@ -112,6 +112,7 @@ end)
 
 Example:
 ```lua
+| Checkbox |
 enabled = win:Checkbox("Enable Feature", enabled)
 ```
 
