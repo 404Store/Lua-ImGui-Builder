@@ -97,6 +97,18 @@ win:Tabs(function()
         ImGui.Text("Settings Tab Active")
     end)
 end)
+
+win:Child("label", -1, -1, true, function() -- sizeX, sizeY is optional. flags (true : showed grid nil : not showed)
+    win:Text("Hello World") 
+end)
+
+local tableV = {"Banana", "Apple", "Watermelon"}
+crt:Table({"No", "Name"}, function() -- default flags 3094 (Showing Grid). id is optional
+    for i = 1, #tableV do
+        local name = tableV[i]
+        crt:TableRow({i, name})
+    end
+end)
 ```
 
 ---
