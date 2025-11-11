@@ -48,7 +48,7 @@ Two dark themes included by default:
 
 | Theme | Description |
 |-------|-------------|
-| `brown` | Dark tone with purple/brown style |
+| `brown` | Dark tone with brown style |
 | `dark` | Modern dark minimalist |
 
 Usage:
