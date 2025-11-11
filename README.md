@@ -112,7 +112,7 @@ end)
 
 Example:
 ```lua
-| Checkbox |
+### Checkbox
 enabled = win:Checkbox("Enable Feature", enabled)
 ```
 
