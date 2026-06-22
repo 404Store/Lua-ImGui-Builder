@@ -15,7 +15,7 @@ return {
     ICON_FA_ALBUM_COLLECTION = "\xef\xa2\xa0",
     ICON_FA_ALICORN = "\xef\x9a\xb0",
     ICON_FA_ALIEN = "\xef\xa3\xb5",
-    ICON_FA_ALIEN_MONSTER = "\xef\xa3\xb6",
+    ICON_FA_ALIEN-MONSTER = "\xef\xa3\xb6",
     ICON_FA_ALIGN_CENTER = "\xef\x80\xb7",
     ICON_FA_ALIGN_JUSTIFY = "\xef\x80\xb9",
     ICON_FA_ALIGN_LEFT = "\xef\x80\xb6",
