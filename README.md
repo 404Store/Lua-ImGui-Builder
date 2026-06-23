@@ -310,6 +310,9 @@ win:Button(":rocket: Launch", callback)
 win:Text(":cog: Settings")
 ```
 
+**Preview available icons:**
+Browse all available FontAwesome icon names at [lunix.space/icon/](https://lunix.space/icon/). Search for an icon to find its name, then use it with the `:icon-name:` syntax (e.g., `:rocket:`, `:cog:`, `:user:`).
+
 Programmatic access:
 ```lua
 local icon = Gui.Icon("rocket")  -- returns the icon character
