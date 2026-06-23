@@ -1,7 +1,5 @@
 # Lua ImGui Builder
 
-A lightweight GUI framework built on Dear ImGui, designed to simplify UI creation in Lua applications and game environments.
-
 ---
 
 ## Key Features
