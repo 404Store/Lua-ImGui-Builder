@@ -89,11 +89,57 @@ Gui.New({
 ```
 
 **Register a reusable theme:**
+
+All available color properties (override any subset):
+
 ```lua
 Gui.RegisterTheme("ocean", {
-    WindowBg = 0xFF0A1628,
-    Text     = 0xFFB0D4F1,
-    Button   = 0xFF1A3A5C,
+    WindowBg          = 0xFF0A1628,
+    ChildBg           = 0xFF0D1B30,
+    PopupBg           = 0xFF0F1F36,
+    TitleBg           = 0xFF0A1628,
+    TitleBgActive     = 0xFF14305C,
+    TitleBgCollapsed  = 0xFF0A1628,
+    Border            = 0xFF1A3A5C,
+    Tab               = 0xFF1A3A5C,
+    TabHovered        = 0xFF205080,
+    TabActive         = 0xFF2860A0,
+    Button            = 0xFF1A3A5C,
+    ButtonHovered     = 0xFF205080,
+    ButtonActive      = 0xFF2860A0,
+    CheckMark         = 0xFF4A9EE0,
+    FrameBg           = 0xFF0D1B30,
+    FrameBgHovered    = 0xFF14305C,
+    FrameBgActive     = 0xFF1A3A5C,
+    SliderGrab        = 0xFF4A9EE0,
+    SliderGrabActive  = 0xFF60B0F0,
+    ScrollbarBg       = 0xFF0A1628,
+    ScrollbarGrab     = 0xFF1A3A5C,
+    ScrollbarGrabHovered  = 0xFF205080,
+    ScrollbarGrabActive   = 0xFF2860A0,
+    Separator         = 0xFF1A3A5C,
+    SeparatorHovered  = 0xFF205080,
+    SeparatorActive   = 0xFF2860A0,
+    Header            = 0xFF1A3A5C,
+    HeaderHovered     = 0xFF205080,
+    HeaderActive      = 0xFF2860A0,
+    ResizeGrip        = 0xFF1A3A5C,
+    ResizeGripHovered = 0xFF205080,
+    ResizeGripActive  = 0xFF2860A0,
+    Text              = 0xFFB0D4F1,
+    TextDisabled      = 0xFF607080,
+    MenuBarBg         = 0xFF0A1628,
+    PlotLines         = 0xFF4A9EE0,
+    PlotLinesHovered  = 0xFF60B0F0,
+    PlotHistogram     = 0xFF4A9EE0,
+    PlotHistogramHovered = 0xFF60B0F0,
+    TableHeaderBg     = 0xFF14305C,
+    TableBorderStrong = 0xFF1A3A5C,
+    TableBorderLight  = 0xFF152A45,
+    TableRowBg        = 0xFF0A1628,
+    TableRowBgAlt     = 0xFF0D1B30,
+    DragDropTarget    = 0xFF4A9EE0,
+    NavHighlight      = 0xFF4A9EE0,
 })
 ```
 
