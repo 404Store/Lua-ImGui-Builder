@@ -284,7 +284,7 @@ win:Columns(1)
 |-----------------------------------------------------|--------------------------------|
 | `Gui:Tabs(renderFunc)`                              | Tab bar container              |
 | `Gui:Tab(label, renderFunc)`                        | Single tab item                |
-| `Gui:Child(name, w, h, border, flags, renderFunc)`  | Scrollable child region        |
+| `Gui:Child(name, w, h, flags, renderFunc)`  | Scrollable child region        |
 | `Gui:BeginChild(name, w, h, border, flags)`         | Manual child begin             |
 | `Gui:EndChild()`                                    | End manual child               |
 | `Gui:TreeNode(label, renderFunc)`                   | Collapsible tree node          |
